@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func (app *Config) Autenticate(w http.ResponseWriter, r *http.Request) {
+func (app *Config) Authenticate(w http.ResponseWriter, r *http.Request) {
 	var requestPayload struct {
 		Email string `json:"email"`
 		Password string `json:"password"`
@@ -17,7 +17,7 @@ func (app *Config) Autenticate(w http.ResponseWriter, r *http.Request) {
 		app.errorJSON(w, err, http.StatusBadRequest)
 		return
 	}
-
+		
 	// validate the user against the database
 	user, err := app.Models.User.GetByEmail(requestPayload.Email)
 	if err != nil {

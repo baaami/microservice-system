@@ -9,13 +9,13 @@ import (
 )
 
 type RequestPayload struct {
-	Action string `json:"action"`
-	Auth AuthPayload `json:"auth,amitempty"`
+	Action string      `json:"action"`
+	Auth   AuthPayload `json:"auth,omitempty"`
 }
 
 type AuthPayload struct {
-	Email string `json:"email"`
-	PAssword string `json:"password"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 func (app *Config) Broker(w http.ResponseWriter, r *http.Request) {
@@ -68,7 +68,7 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 		app.errorJSON(w, errors.New("invalid credentials"))
 		return
 	} else if response.StatusCode != http.StatusAccepted {
-		app.errorJSON(w, fmt.Errorf("error calling auth service [%d]", response.StatusCode))
+		app.errorJSON(w, fmt.Errorf("error calling auth service, err: %v [%d]", response.Body, response.StatusCode))
 		return
 	}
 
