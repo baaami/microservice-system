@@ -2,3 +2,4 @@ brokerApp
 authApp
 loggerServiceApp
 project/db-data
+mail-service/mailServiceApp
