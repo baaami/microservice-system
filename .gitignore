@@ -5,3 +5,4 @@ project/db-data
 mail-service/mailServiceApp
 listener-service/listenerApp
 listener-service/listenerServiceApp
+front-end/frontApp
