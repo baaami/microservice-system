@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/baaami/microservice-system/listener/event"
 	amqp "github.com/rabbitmq/amqp091-go"
 )
 
@@ -23,8 +24,16 @@ func main() {
 	log.Println("Listening for and consuming RabbitMQ messages...")
 
 	// create consumer
+	consumer, err := event.NewConsumer(rabbitConn)
+	if err != nil {
+		panic(err)
+	}
 
 	// watch the queue and consume events
+	err = consumer.Listen([]string{"log.INFO", "log.WARNING", "log.ERROR"})
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 func connect() (*amqp.Connection, error) {
