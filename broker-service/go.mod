@@ -4,4 +4,7 @@ go 1.20
 
 require github.com/go-chi/chi/v5 v5.0.12
 
-require github.com/go-chi/cors v1.2.1 // indirect
+require (
+	github.com/go-chi/cors v1.2.1 // indirect
+	github.com/rabbitmq/amqp091-go v1.10.0 // indirect
+)
